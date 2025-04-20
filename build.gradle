@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.jugiyul.village'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '21'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'         // 웹 API용
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'           // 핫 리로드
+    compileOnly 'org.projectlombok:lombok'                                    //
+    annotationProcessor 'org.projectlombok:lombok'                            //
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'    // Spring 테스트
+}
+
+test {
+    useJUnitPlatform()
+}
