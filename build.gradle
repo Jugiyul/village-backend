@@ -14,10 +14,13 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'         // 웹 API용
+    implementation 'org.springframework.boot:spring-boot-starter-security'    // 보안 설정
     developmentOnly 'org.springframework.boot:spring-boot-devtools'           // 핫 리로드
     compileOnly 'org.projectlombok:lombok'                                    //
     annotationProcessor 'org.projectlombok:lombok'                            //
     testImplementation 'org.springframework.boot:spring-boot-starter-test'    // Spring 테스트
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'  // 스웨거 UI 및 기본 설정
 }
 
 test {
