@@ -26,5 +26,5 @@ public class StartRequest {
     private String refererUrl;
     // 시작 버튼을 누른 시간
     @NotNull
-    private OffsetDateTime timestamp;
+    private LocalDateTime timestamp;
 }
