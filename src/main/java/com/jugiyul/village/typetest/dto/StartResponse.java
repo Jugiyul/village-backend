@@ -16,10 +16,6 @@ public class StartResponse {
     private String testSessionId;
 
     // 시작 시간
-    @JsonFormat(
-        shape    = JsonFormat.Shape.STRING,
-        pattern  = "yyyy-MM-dd'T'HH:mm:ss",
-        timezone = "Asia/Seoul"           // 한국 시간대 지정
-    )
+    @JsonFormat(shape    = JsonFormat.Shape.STRING, pattern  = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime startedAt;
 }
