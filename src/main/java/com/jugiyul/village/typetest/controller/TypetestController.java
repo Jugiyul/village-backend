@@ -1,5 +1,6 @@
 package com.jugiyul.village.typetest.controller;
 
+import com.jugiyul.village.typetest.dto.QuestionResponse;
 import com.jugiyul.village.typetest.dto.SessionCountResponse;
 import com.jugiyul.village.typetest.dto.StartRequest;
 import com.jugiyul.village.typetest.dto.StartResponse;
@@ -27,9 +28,15 @@ public class TypetestController {
     }
 
     @GetMapping("sessions/count")
-    @Operation(summary = "참여자 수 받아오기", description = "유형 테스트 참여자 수를 받아옵니다.(세션 생성 수)")
+    @Operation(summary = "참여자 수 받아오기", description = "유형 테스트 참여자 수(세션 생성 수)를 받아옵니다.")
     public ResponseEntity<SessionCountResponse> getSessionCount() {
         long count = ttService.getSessionCount();
         return ResponseEntity.ok(new SessionCountResponse(count));
+    }
+
+    @GetMapping("/questions/{questionNo}")
+    @Operation(summary = "문제 받아오기", description = "각 페이지에 해당하는 문제와 선택지를 받아옵니다.")
+    public ResponseEntity<QuestionResponse> getQuestion(@PathVariable Integer questionNo) {
+        return ResponseEntity.ok(ttService.getQuestion(questionNo));
     }
 }
