@@ -16,6 +16,7 @@ public class TypetestService {
 
     private final TestSessionRepository tsRepo;
 
+    // 시작 - session 생성
     public StartResponse startTest(StartRequest req) {
         // 세션 Id 생성
         String sessionId = UUID.randomUUID().toString();
@@ -27,4 +28,8 @@ public class TypetestService {
         return new StartResponse(sessionId, LocalDateTime.now());
     }
 
+    // session 수 받아오기
+    public long getSessionCount() {
+        return tsRepo.count();
+    }
 }

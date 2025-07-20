@@ -1,5 +1,6 @@
 package com.jugiyul.village.typetest.controller;
 
+import com.jugiyul.village.typetest.dto.SessionCountResponse;
 import com.jugiyul.village.typetest.dto.StartRequest;
 import com.jugiyul.village.typetest.dto.StartResponse;
 import com.jugiyul.village.typetest.service.TypetestService;
@@ -9,10 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -22,9 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class TypetestController {
     public final TypetestService ttService;
 
-    @PostMapping("/start")
+    @PostMapping("/sessions/start")
     @Operation(summary = "시작 버튼", description = "유형 테스트를 시작합니다.")
     public ResponseEntity<StartResponse> start(@Valid @RequestBody StartRequest req) {
         return ResponseEntity.ok(ttService.startTest(req));
+    }
+
+    @GetMapping("sessions/count")
+    @Operation(summary = "참여자 수 받아오기", description = "유형 테스트 참여자 수를 받아옵니다.(세션 생성 수)")
+    public ResponseEntity<SessionCountResponse> getSessionCount() {
+        long count = ttService.getSessionCount();
+        return ResponseEntity.ok(new SessionCountResponse(count));
     }
 }

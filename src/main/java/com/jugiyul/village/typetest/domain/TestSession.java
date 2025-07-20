@@ -5,7 +5,7 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 
 @Entity
@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "typetest_sessions")
 public class TestSession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,9 @@ public class TestSession {
     private String sessionId;
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    @Column(name = "started_at",
+            nullable = false,
+            updatable = false,
+            columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime startedAt;
 }
