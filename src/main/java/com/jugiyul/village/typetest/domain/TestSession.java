@@ -1,5 +1,8 @@
 package com.jugiyul.village.typetest.domain;
 
+import com.jugiyul.village.typetest.domain.enums.Browser;
+import com.jugiyul.village.typetest.domain.enums.DeviceType;
+import com.jugiyul.village.typetest.domain.enums.OS;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,6 +25,21 @@ public class TestSession {
 
     @Column(nullable = false, unique = true)
     private String sessionId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "device_type", nullable = false, length = 30)
+    private DeviceType deviceType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "os", nullable = false, length = 30)
+    private OS os;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "browser", nullable = false, length = 30)
+    private Browser browser;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String refererUrl;
 
     @CreatedDate
     @Column(name = "started_at",
