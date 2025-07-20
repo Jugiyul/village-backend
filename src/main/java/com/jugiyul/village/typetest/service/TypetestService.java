@@ -29,11 +29,17 @@ public class TypetestService {
         // 세션 Id 생성
         String sessionId = UUID.randomUUID().toString();
         // 엔티티 저장
-        TestSession session = new TestSession();
-        session.setSessionId(sessionId);
-        tsRepo.save(session);
+        TestSession session = TestSession.builder()
+                .sessionId(sessionId)
+                .deviceType(req.getDeviceType())
+                .os(req.getOs())
+                .browser(req.getBrowser())
+                .refererUrl(req.getRefererUrl())
+                .build();
+        // saveAndFlush 하면 바로 DB 반영 + createdAt 채우기
+        TestSession savedSession = tsRepo.saveAndFlush(session);
         // 응답 DTO 반환
-        return new StartResponse(sessionId, LocalDateTime.now());
+        return new StartResponse(sessionId, savedSession.getStartedAt());
     }
 
     // session 수 받아오기

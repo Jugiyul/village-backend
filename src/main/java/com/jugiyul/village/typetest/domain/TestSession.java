@@ -17,6 +17,7 @@ import java.time.OffsetDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "typetest_sessions")
 public class TestSession {
     @Id
