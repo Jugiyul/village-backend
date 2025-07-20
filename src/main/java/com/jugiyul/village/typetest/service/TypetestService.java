@@ -39,7 +39,10 @@ public class TypetestService {
         // saveAndFlush 하면 바로 DB 반영 + createdAt 채우기
         TestSession savedSession = tsRepo.saveAndFlush(session);
         // 응답 DTO 반환
-        return new StartResponse(sessionId, savedSession.getStartedAt());
+        return StartResponse.builder()
+                .testSessionId(sessionId)
+                .startedAt(savedSession.getStartedAt())
+                .build();
     }
 
     // session 수 받아오기
